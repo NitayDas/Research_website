@@ -1,0 +1,128 @@
+{% load static %}
+
+<style>
+    /* footer {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        background-color: #343a40;
+        padding: 10px;
+        color: #ffffff;
+        text-align: center;
+    } */
+    footer{
+    font-family: "Roboto", sans-serif;
+    font-weight:500;
+    font-style: normal;
+    font-size: 13px;
+    color: #2e2c2c;
+    }
+
+.footer-heading{
+   color:  #FD5602;
+   font-size: 16px;
+}
+.footer-company-name{
+    font-size: 22px;
+    font-weight: bold;
+}
+.footer-link{
+   color: black ;
+   text-decoration: none;
+}
+/* .footer-link:hover{
+    color: #FD5602;
+} */
+</style>
+
+
+
+<!-- Remove the container if you want to extend the Footer to full width. -->
+<div class="container-fluid p-0" style="background-color: #F2F3F4">
+    <!-- Footer -->
+    <footer class="text-start text-dark pt-2 ">
+
+
+      <!-- Section: Links  -->
+      <section >
+        <div class="container text-start text-md-start mt-3 pt-3">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <img class="img-fluid rounded pb-4" src="{% static 'images/crn_logo.png' %}" alt="logo" srcset="" width="100px" height="100px">
+              <!-- Content -->
+              <h6 class="text-uppercase fw-bold footer-company-name pb-2" style="color: #8576FF;">ROMANCE CABLE NETWORK</h6>
+              <p>
+                IT Park,
+                Jashore -7400
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4 footer-heading" style="color: #8576FF;">Office Address</h6>
+              <!-- <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                                style="width: 60px; background-color: #7c4dff; height: 2px" /> -->
+              <div href="#" class="footer-link text-nowrap">
+                <p> Level-08, Sectioin-D, MTB
+                  <br>
+                 Sheikh Hasina Software Technology Park
+                  <br>
+                  Nazir Shankarpur <br> Jashore Sadar, Jashore-7400
+                </p>
+              </div>
+             
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2  mb-4 ">
+              <!-- Links -->
+              <div class="ps-lg-4">
+                    <h6 class="text-uppercase fw-bold mb-4 footer-heading" style="color: #8576FF;">Registered Address</h6>
+                    <div href="#" class="footer-link">
+                          <p> Puraton Kashba <br>Goshpara, Jashore<br>Sadar, Jashore - 7400</p>
+                    </div>
+              </div>
+              </a>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-3">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4 footer-heading" style="color: #8576FF;">Hotline</h6>
+              <p><i class="fas fa-envelope mr-3" style="margin-right: 13px;"></i> <a href="#"
+                  class="footer-link">info@rcnbroadband.com</a></p>
+              <p><i class="fas fa-phone mr-3" style="margin-right: 13px;"></i> <a href="#" class="footer-link">+880 9645900119</a></p>
+            </div>
+            <!-- Grid column -->
+
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+
+
+      <!-- Copyright -->
+      <div class="text-center pb-4" style="background-color: #F2F3F4">
+        Copyright © <span id="year"></span> ROMANCE CABLE NETWORK, JASHORE. <br> All rights reserved
+      </div>
+      <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+  </div>
+
+  
+  <script>
+  
+    let date = new Date();
+    document.getElementById('year').innerText = date.getFullYear();
+  
+  </script>
