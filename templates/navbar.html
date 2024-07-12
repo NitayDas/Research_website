@@ -2,7 +2,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top mask-custom shadow-0">
         <div class="container">
-            <a class="navbar-brand" href="#!"><span style="color: #5e9693;">Research</span><span style="color: #18EF74;">Lab</span></a>
+            <a class="navbar-brand" href="{% url 'lab_app:home_page_view' %}"><span style="color: #5e9693;">Research</span><span style="color: #18EF74;">Lab</span></a>
             <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
                 data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -11,18 +11,26 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" href="#!">Home</a>
+                        <a class="nav-link fw-bold" href="{% url 'lab_app:home_page_view' %}">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle fw-bold" href="#!" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             People
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#!">All</a></li>
+                            <li><a class="dropdown-item" href="#!">Teachers</a></li>
                             <li><a class="dropdown-item" href="#!">Honors</a></li>
                             <li><a class="dropdown-item" href="#!">Master's</a></li>
                             <li><a class="dropdown-item" href="#!">PhD</a></li>
                             <li><a class="dropdown-item" href="#!">M Fill</a></li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="#!">Publications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="#!">News & Events</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fw-bold" href="#!">About</a>
@@ -33,6 +41,9 @@
                     {% if user.is_authenticated and user.is_superuser %}
                     <li class="nav-item">
                         <a class="nav-link fw-bold" href="{% url 'lab_app:banner_image_upload' %}">Lab Image</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="{% url 'lab_app:add_category' %}">Add Category</a>
                     </li>
                     {% endif %}
                     {% if user.is_authenticated %}

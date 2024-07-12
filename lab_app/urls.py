@@ -10,4 +10,5 @@ urlpatterns = [
     path('banner-image-upload/', views.upload_banner_image, name='banner_image_upload'),
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
+    path('add_category/', views.add_category, name='add_category'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from lab_app.forms import BannerImageForm,LoginForm
+from lab_app.forms import BannerImageForm,LoginForm, PeopleCategoryForm
 from lab_app.models import BannerImage
 
 # Create your views here.
@@ -46,8 +46,26 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'lab_app/login.html', {'form': form})
 
+
+
 @login_required
 def user_logout(request):
     logout(request)
     messages.success(request, 'You have been logged out successfully!')
     return redirect('lab_app:login')
+
+
+
+
+@login_required
+@permission_required('lab_app.add_peoplecategory')
+def add_category(request):
+    if request.method == 'POST':
+        form = PeopleCategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'New category added successfully!')
+            return redirect('lab_app:home_page_view')
+    else:
+        form = PeopleCategoryForm()
+    return render(request, 'lab_app/add_category.html', {'form': form})
