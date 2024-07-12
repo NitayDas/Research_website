@@ -33,3 +33,51 @@ header{
 .navbar-nav .nav-item:hover .dropdown-menu {
     display: block;
 }
+
+/* styles.css */
+
+.image-upload-content .container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.image-upload-content .upload-form {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.image-upload-content .form-group {
+  margin-bottom: 20px;
+}
+
+.image-upload-content label {
+  display: block;
+  font-weight: bold;
+}
+
+.image-upload-content input[type="file"] {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.image-upload-content button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.image-upload-content button:hover {
+  background-color: #0056b3;
+}
+
+.login_form{
+  margin-top: 20px;
+}

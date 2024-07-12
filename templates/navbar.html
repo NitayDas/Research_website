@@ -30,6 +30,20 @@
                     <li class="nav-item">
                         <a class="nav-link fw-bold" href="#!">Contact</a>
                     </li>
+                    {% if user.is_authenticated and user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="{% url 'lab_app:banner_image_upload' %}">Lab Image</a>
+                    </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="{% url 'lab_app:logout' %}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="{% url 'lab_app:login' %}">Login</a>
+                    </li>
+                    {% endif %}
                 </ul>
                 <ul class="navbar-nav d-flex flex-row">
                     <li class="nav-item me-3 me-lg-0">
@@ -54,7 +68,7 @@
     <!-- Navbar -->
 
     <!--Section: Design Block--> 
-    <section>
+    {% comment %} <section>
         <!-- Intro -->
         <div id="intro" class="bg-image vh-100" style="
                 background-image: url('https://mdbootstrap.com/img/Photos/new-templates/psychologist/img1.jpg');
@@ -62,6 +76,6 @@
             <div class="mask" style="background-color: rgba(250, 182, 162, 0.15);"></div>
         </div>
         <!-- Intro -->
-    </section> 
+    </section>  {% endcomment %}
     <!--Section: Design Block-->
 </header>

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="image-upload-content text-center">
+    <div class="container mt-3">
+        <h2>Upload Banner Image</h2>
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            <h6 class="text-danger">Image width 1920 px and height 790 px </h6>
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.image.label_tag }}
+                {{ form.image }}
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock content %}
