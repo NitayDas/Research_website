@@ -30,9 +30,59 @@
 header{
     margin-bottom: 80px;
 }
-.navbar-nav .nav-item:hover .dropdown-menu {
-    display: block;
+/* Add transition and background color to dropdown items */
+.navbar-nav .nav-item .dropdown-menu {
+  display: none;
+  transition: all 0.3s ease;
+  background-color: #f8f9fa; /* Light background color */
+  padding: 0.5rem 1rem; /* Adjust padding */
+  border-radius: 0.5rem; /* Rounded corners */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
+
+.navbar-nav .nav-item:hover .dropdown-menu {
+  display: block;
+}
+
+.navbar-nav .nav-item .dropdown-menu .dropdown-item {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-nav .nav-item .dropdown-menu .dropdown-item:hover {
+  background-color: #007bff; /* Blue background on hover */
+  color: #fff; /* White text on hover */
+  border-radius: 0.25rem; /* Rounded corners on hover */
+}
+
+/* Customize the nav link */
+.navbar-nav .nav-item .nav-link {
+  color: #343a40; /* Dark gray color */
+  font-weight: bold;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  color: #007bff; /* Blue color on hover */
+}
+
+/* Adjust dropdown toggle arrow */
+.navbar-nav .nav-item .dropdown-toggle::after {
+  margin-left: 0.5rem; /* Space between text and arrow */
+  transition: transform 0.3s ease;
+}
+
+.navbar-nav .nav-item:hover .dropdown-toggle::after {
+  transform: rotate(180deg); /* Rotate arrow on hover */
+}
+
+/* Additional styling for better appearance */
+.navbar {
+  padding: 1rem; /* Add padding to the navbar */
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem; /* Adjust padding for dropdown items */
+}
+
 
 /* styles.css */
 

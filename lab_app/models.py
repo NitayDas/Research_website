@@ -18,7 +18,8 @@ class PeopleProfile(models.Model):
     name = models.CharField(max_length=200,null=True,blank=True)
     position = models.CharField(max_length=200,null=True,blank=True)
     affiliation = models.CharField(max_length=200,null=True,blank=True)
-    project = models.CharField(max_length=200,null=True,blank=True)
+    profile_photo = models.ImageField(upload_to='profileImages')
+    # project = models.CharField(max_length=200,null=True,blank=True)
 
     def __str__(self):
         return self.name

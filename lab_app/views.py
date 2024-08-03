@@ -1,9 +1,9 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from lab_app.forms import BannerImageForm,LoginForm, PeopleCategoryForm
-from lab_app.models import BannerImage
+from lab_app.models import BannerImage, PeopleCategory, PeopleProfile
 
 # Create your views here.
 def home_page_view(request):
@@ -69,3 +69,17 @@ def add_category(request):
     else:
         form = PeopleCategoryForm()
     return render(request, 'lab_app/add_category.html', {'form': form})
+
+
+
+
+def people_list(request):
+    categories = PeopleCategory.objects.all()
+    profiles = PeopleProfile.objects.all()
+    return render(request, 'lab_app/people_list.html', {'categories': categories, 'profiles': profiles})
+
+
+def category_people_list(request, category_name):
+    category = get_object_or_404(PeopleCategory, category=category_name)
+    profiles = PeopleProfile.objects.filter(category=category)
+    return render(request, 'lab_app/category_people_list.html', {'category': category, 'profiles': profiles})

@@ -18,14 +18,15 @@
                             People
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">All</a></li>
-                            <li><a class="dropdown-item" href="#!">Teachers</a></li>
-                            <li><a class="dropdown-item" href="#!">Honors</a></li>
-                            <li><a class="dropdown-item" href="#!">Master's</a></li>
-                            <li><a class="dropdown-item" href="#!">PhD</a></li>
-                            <li><a class="dropdown-item" href="#!">M Fill</a></li>
+                            <li><a class="dropdown-item" href="{% url 'lab_app:all_people_list' %}">All</a></li>
+                            <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='Teachers' %}">Teachers</a></li>
+                            <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='Honors' %}">Honors</a></li>
+                            <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name="Master's" %}">Master's</a></li>
+                            <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='PhD' %}">PhD</a></li>
+                            <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='M Fill' %}">M Fill</a></li>
                         </ul>
                     </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link fw-bold" href="#!">Publications</a>
                     </li>
