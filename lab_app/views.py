@@ -83,3 +83,7 @@ def category_people_list(request, category_name):
     category = get_object_or_404(PeopleCategory, category=category_name)
     profiles = PeopleProfile.objects.filter(category=category)
     return render(request, 'lab_app/category_people_list.html', {'category': category, 'profiles': profiles})
+
+
+def people_detail_view(request):
+    return render(request,'lab_app/people_detail.html')

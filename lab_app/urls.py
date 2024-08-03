@@ -13,4 +13,5 @@ urlpatterns = [
     path('add_category/', views.add_category, name='add_category'),
     path('all-categories-people-list/', views.people_list, name='all_people_list'),
     path('category/<str:category_name>/', views.category_people_list, name='category_people_list'),
+    path('people-profile-detail/',views.people_detail_view,name='people_profile_detail')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -131,3 +131,30 @@ header{
 .login_form{
   margin-top: 20px;
 }
+
+
+
+
+.profile-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.bio-card {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.research-interest {
+  list-style: none;
+  padding-left: 0;
+}
+
+.research-interest li {
+  padding: 5px 0;
+}
+
+.navbar-brand img {
+  max-height: 40px;
+}
