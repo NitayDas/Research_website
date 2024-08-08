@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views.generic import DetailView
+from django.http import Http404
 from lab_app.forms import BannerImageForm,LoginForm, PeopleCategoryForm
 from lab_app.models import BannerImage, PeopleCategory, PeopleProfile, Project, Publication
 
@@ -100,8 +101,16 @@ class PeopleProfileDetailView(DetailView):
 
 
 def author_projects(request, author_id):
-    author = get_object_or_404(PeopleProfile, id=author_id)
+    try:
+        author = PeopleProfile.objects.get(id=author_id)
+    except PeopleProfile.DoesNotExist:
+        raise Http404("Author does not exist")
+    
     projects = Project.objects.filter(author=author)
+    
+    if not projects.exists():
+        messages.warning(request, "This author has no associated projects.")
+
     return render(request, 'lab_app/author_projects.html', {'author': author, 'projects': projects})
 
 
