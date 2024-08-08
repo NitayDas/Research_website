@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="mb-4">
+                <img src="{{ project.project_image.url }}" class="img-fluid" alt="{{ project.project_title }}">
+            </div>
+            <h2 class="text-primary">{{ project.project_title }}</h2>
+            <p class="text-secondary">{{ project.project_description }}</p>
+            <div class="mt-4">
+                <p><strong>Start Date:</strong> {{ project.stat_date }}</p>
+                <p><strong>End Date:</strong> {{ project.end_date }}</p>
+                <p><strong>Department:</strong> {{ project.department }}</p>
+                <p><strong>Funding Authority:</strong> {{ project.funding_authority }}</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="p-3 bg-warning rounded">
+                <h4 class="text-black-50 fw-bold">More <span class="text-black">Projects</span></h4>
+                <ul class="list-unstyled">
+                    {% for p in related_projects %}
+                    <li class="mb-3">
+                        <div class="d-flex align-items-center">
+                            <img src="{{ p.project_image.url }}" alt="{{ p.project_title }}" class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;">
+                            <div class="ms-3">
+                                <a href="{% url 'lab_app:project_detail' p.id %}" class="text-decoration-none text-dark">{{ p.project_title|truncatewords:6 }}</a>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

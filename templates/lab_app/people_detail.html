@@ -14,7 +14,7 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#">Researches</a></li>
                 <li><a class="dropdown-item" href="#">Publications</a></li>
-                <li><a class="dropdown-item" href="{% url 'lab_app:author_projects' author.id %}">Projects</a></li>
+                <li><a class="dropdown-item" href="{% url 'lab_app:author_projects' profile.id %}">Projects</a></li>
             </ul>
         </div>
         <div class="m-3">
@@ -36,6 +36,15 @@
     <div class="col-md-6">
         <h2>Biography</h2>
         <p class="text-justify-custom">{{ profile.biography }}</p>
+        <div>
+            <a target="_blank" href="{{ profile.google_scholar }}">
+                <p class="text-justify-custom">Google Scholar: {{ profile.google_scholar }}</p>
+            </a>
+            <a target="_blank" href="{{ profile.research_gate }}">
+                <p class="text-justify-custom">Research Gate: {{ profile.research_gate }}</p>
+            </a>
+        </div>
+        
     </div>
 
     <div class="col-md-3">

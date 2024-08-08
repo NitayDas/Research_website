@@ -176,3 +176,49 @@ header{
   opacity: 0;
   transition: visibility 0s, opacity 0.2s linear;
 }
+
+
+
+
+.header-section {
+  background: linear-gradient(to right, #580968, #47666e);
+  padding: 60px;
+  border-radius: 10px;
+}
+
+.header-section h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+
+.project-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-card img {
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+.project-card .card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-weight: bold;
+}
+
+.card-text {
+  margin-bottom: 1rem;
+}
+
+.collapse {
+  width: 100%;
+}

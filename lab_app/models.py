@@ -20,7 +20,8 @@ class PeopleProfile(models.Model):
     affiliation = models.CharField(max_length=200,null=True,blank=True)
     profile_photo = models.ImageField(upload_to='profileImages')
     biography = models.TextField(null=True, blank=True)
-    # project = models.CharField(max_length=200,null=True,blank=True)
+    google_scholar = models.CharField(max_length=300,blank=True,null=True)
+    research_gate = models.CharField(max_length=300,blank=True,null=True)
 
     def __str__(self):
         return self.name
