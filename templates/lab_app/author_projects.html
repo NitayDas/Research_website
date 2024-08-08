@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <img src="https://via.placeholder.com/300" alt="Melbu Logo" class="img-fluid">
+        </div>
+        <div class="col-md-4">
+            <div class="more-projects">
+                More Projects
+            </div>
+            <div class="project-list mt-3">
+                <div class="project-item d-flex align-items-center">
+                    <img src="https://via.placeholder.com/50" alt="Project Image" class="project-image">
+                    <div class="project-description">
+                        <p class="project-title">Gender in Coastal Areas of Bangladesh: ‘Climate Vulnerability’...</p>
+                    </div>
+                </div>
+                <div class="project-item d-flex align-items-center">
+                    <img src="https://via.placeholder.com/50" alt="Project Image" class="project-image">
+                    <div class="project-description">
+                        <p class="project-title">Boron-carbon-nitride based nanostructures for toxic gas sens...</p>
+                    </div>
+                </div>
+                <div class="project-item d-flex align-items-center">
+                    <img src="https://via.placeholder.com/50" alt="Project Image" class="project-image">
+                    <div class="project-description">
+                        <p class="project-title">RELATIVE STUDY ON SOLUTION OF HEAT EQUATION BY FINITE DIFFE...</p>
+                    </div>
+                </div>
+                <div class="project-item d-flex align-items-center">
+                    <img src="https://via.placeholder.com/50" alt="Project Image" class="project-image">
+                    <div class="project-description">
+                        <p class="project-title">Physiotherapy Project for the Women of Rural Jashore...</p>
+                    </div>
+                </div>
+                <div class="project-item d-flex align-items-center">
+                    <img src="https://via.placeholder.com/50" alt="Project Image" class="project-image">
+                    <div class="project-description">
+                        <p class="project-title">JUST Smart Campus: Smart Database of Students...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% comment %} <div class="container mt-5">
+    <h1>{{ author.name }}'s Projects</h1>
+    <div class="row">
+        {% for project in projects %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img class="card-img-top" src="{{ project.project_image.url }}" alt="{{ project.project_title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.project_title }}</h5>
+                        <p class="card-text">
+                            <strong>Start Date:</strong> {{ project.stat_date }}<br>
+                            <strong>End Date:</strong> {{ project.end_date }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div> {% endcomment %}

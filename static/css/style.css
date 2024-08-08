@@ -158,3 +158,21 @@ header{
 .navbar-brand img {
   max-height: 40px;
 }
+
+.text-justify-custom {
+  text-align: justify;
+}
+
+/* Dropdown menu on hover */
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  margin-top: 0;
+}
+.dropdown-menu {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s linear;
+}

@@ -20,7 +20,7 @@
                         <p class="card-text"><strong>Position:</strong> {{ profile.position }}</p>
                         <p class="card-text"><strong>Affiliation:</strong> {{ profile.affiliation }}</p>
                         <p class="card-text"><strong>Category:</strong> {{ profile.category.category }}</p>
-                        <a href="#" class="btn btn-primary mt-auto">View Profile</a>
+                        <a href="{% url 'lab_app:people_profile_detail' profile.id %}" class="btn btn-primary mt-auto">View Profile</a>
                     </div>
                 </div>
             </div>

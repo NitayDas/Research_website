@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from lab_app.forms import BannerImageForm,LoginForm, PeopleCategoryForm
-from lab_app.models import BannerImage, PeopleCategory, PeopleProfile
+from lab_app.models import BannerImage, PeopleCategory, PeopleProfile, Project
 
 # Create your views here.
 def home_page_view(request):
@@ -84,6 +84,23 @@ def category_people_list(request, category_name):
     profiles = PeopleProfile.objects.filter(category=category)
     return render(request, 'lab_app/category_people_list.html', {'category': category, 'profiles': profiles})
 
+from django.views.generic import DetailView
 
-def people_detail_view(request):
-    return render(request,'lab_app/people_detail.html')
+class PeopleProfileDetailView(DetailView):
+    model = PeopleProfile
+    template_name = 'lab_app/people_detail.html'  # Use the provided template
+    context_object_name = 'profile'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['author'] = self.object.category  # Assuming 'category' is the author
+        return context
+
+
+
+
+def author_projects(request, author_id):
+    author = get_object_or_404(PeopleProfile, id=author_id)
+    projects = Project.objects.filter(author=author)
+    return render(request, 'lab_app/author_projects.html', {'author': author, 'projects': projects})
+
