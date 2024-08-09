@@ -13,6 +13,7 @@
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-primary">{{ publication.title }}</h5>
                     <p class="card-text text-secondary"><strong>Author:</strong> {{ publication.author.name }}</p>
+                    <p class="card-text text-secondary"><strong>Publish Year:</strong> {{ publication.publish_year }}</p>
                     {% if publication.doi_link %}
                     <a href="{{ publication.doi_link }}" target="_blank" class="btn btn-outline-primary mt-auto">View DOI</a>
                     {% endif %}

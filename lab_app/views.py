@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.views.generic import DetailView
 from django.http import Http404
 from lab_app.forms import BannerImageForm,LoginForm, PeopleCategoryForm
-from lab_app.models import BannerImage, PeopleCategory, PeopleProfile, Project, Publication
+from lab_app.models import BannerImage, Contact, PeopleCategory, PeopleProfile, Project, Publication, ResearchInterest
 
 # Create your views here.
 def home_page_view(request):
@@ -133,5 +133,23 @@ def author_publications(request, author_id):
     author = get_object_or_404(PeopleProfile, id=author_id)
     publications = Publication.objects.filter(author=author)
     return render(request, 'lab_app/author_publications.html', {'author': author, 'publications': publications})
+
+
+
+def contact_info(request, author_id):
+    author = get_object_or_404(PeopleProfile, id=author_id)
+    contact = get_object_or_404(Contact, author=author)
+
+    return render(request, 'lab_app/contact_info.html', {'author': author, 'contact': contact})
+
+
+
+def research_interest_view(request, author_id):
+    author = get_object_or_404(PeopleProfile, pk=author_id)
+    research_interests = ResearchInterest.objects.filter(author=author)
+    return render(request, 'lab_app/research_interest.html', {
+        'author': author,
+        'research_interests': research_interests,
+    })
 
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BannerImage, PeopleProfile, Publication, PeopleCategory,Education,Project,Contact
+from .models import BannerImage, PeopleProfile, Publication, PeopleCategory,Education,Project,Contact,ResearchInterest
 
 # Register your models here.
 admin.site.register(BannerImage)
@@ -9,3 +9,4 @@ admin.site.register(PeopleCategory)
 admin.site.register(Education)
 admin.site.register(Project)
 admin.site.register(Contact)
+admin.site.register(ResearchInterest)

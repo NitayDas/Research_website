@@ -13,7 +13,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#">Researches</a></li>
-                <li><a class="dropdown-item" href="#">Publications</a></li>
+                <li><a class="dropdown-item" href="{% url 'lab_app:author_projects' profile.id %}">Publications</a></li>
                 <li><a class="dropdown-item" href="{% url 'lab_app:author_projects' profile.id %}">Projects</a></li>
             </ul>
         </div>

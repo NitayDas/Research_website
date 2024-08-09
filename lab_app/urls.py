@@ -18,4 +18,6 @@ urlpatterns = [
     path('project/<int:project_id>/', views.project_detail, name='project_detail'),
     path('publications/', views.publication_list, name='publication_list'),
     path('publications/author/<int:author_id>/', views.author_publications, name='author_publications'),
+    path('author/<int:author_id>/contact/', views.contact_info, name='contact_info'),
+    path('author/<int:author_id>/research-interests/', views.research_interest_view, name='research_interest'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

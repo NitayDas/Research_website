@@ -17,6 +17,7 @@ class PeopleProfile(models.Model):
     category = models.ForeignKey(PeopleCategory,on_delete=models.CASCADE)
     name = models.CharField(max_length=200,null=True,blank=True)
     position = models.CharField(max_length=200,null=True,blank=True)
+    department = models.CharField(max_length=200,null=True,blank=True)
     affiliation = models.CharField(max_length=200,null=True,blank=True)
     profile_photo = models.ImageField(upload_to='profileImages')
     biography = models.TextField(null=True, blank=True)
@@ -30,6 +31,7 @@ class Publication(models.Model):
     author = models.ForeignKey(PeopleProfile,on_delete=models.CASCADE)
     title = models.CharField(max_length=255,null=True,blank=True)
     doi_link = models.CharField(max_length=300,null=True,blank=True)
+    publish_year = models.CharField(max_length=200,null=True,blank=True)
 
     def __str__(self):
         return f"{self.title} by {self.author}"
@@ -73,6 +75,12 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.author}"
+    
+
+
+class ResearchInterest(models.Model):
+    author = models.ForeignKey(PeopleProfile,on_delete=models.CASCADE)
+    interest_name = models.CharField(max_length=300,null=True,blank=True)
 
 
 
