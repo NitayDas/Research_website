@@ -84,4 +84,14 @@ class ResearchInterest(models.Model):
 
 
 
+class Research(models.Model):
+    author = models.ForeignKey(PeopleProfile,on_delete=models.CASCADE)
+    title = models.TextField(null=True,blank=True)
+    project_image = models.ImageField(upload_to='research/images/')
+
+    def __str__(self):
+        return f"{self.author}"
+
+
+
 

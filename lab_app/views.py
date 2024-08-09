@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.views.generic import DetailView
 from django.http import Http404
 from lab_app.forms import BannerImageForm,LoginForm, PeopleCategoryForm
-from lab_app.models import BannerImage, Contact, PeopleCategory, PeopleProfile, Project, Publication, ResearchInterest
+from lab_app.models import BannerImage, Contact, Education, PeopleCategory, PeopleProfile, Project, Publication, Research, ResearchInterest
 
 # Create your views here.
 def home_page_view(request):
@@ -95,7 +95,7 @@ class PeopleProfileDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['author'] = self.object
+        context['research_interests'] = ResearchInterest.objects.filter(author=self.object)
         return context
 
 
@@ -152,4 +152,35 @@ def research_interest_view(request, author_id):
         'research_interests': research_interests,
     })
 
+
+
+def author_education(request, author_id):
+    author = get_object_or_404(PeopleProfile, id=author_id)
+    education_records = Education.objects.filter(author=author)
+    return render(request, 'lab_app/author_education.html', {
+        'education_records': education_records,
+        'author': author,
+    })
+
+
+
+def author_research(request, author_id):
+    try:
+        author = PeopleProfile.objects.get(id=author_id)
+    except PeopleProfile.DoesNotExist:
+        raise Http404("Author does not exist")
+    
+    research = Research.objects.filter(author=author)
+    
+    if not research.exists():
+        messages.warning(request, "This author has no associated projects.")
+
+    return render(request, 'lab_app/author_research.html', {'author': author, 'research': research})
+
+
+
+def research_detail(request, research_id):
+    research = get_object_or_404(Research, id=research_id)
+    related_research = Research.objects.filter(author=research.author).exclude(id=research.id)
+    return render(request, 'lab_app/research_detail.html', {'research': research, 'related_research': related_research})
 

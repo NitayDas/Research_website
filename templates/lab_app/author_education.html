@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container pt-2">
+    <div class="row">
+        <!-- Profile Section -->
+        <div class="col-12 col-md-4 mb-3 mb-md-0">
+            <div class="profile-container text-center">
+                <img src="{{ author.profile_photo.url }}" alt="{{ author.name }}" style="max-width: 100%;">
+                <div class="profile-info mt-3">
+                    <h2>{{ author.name }}</h2>
+                    <p>{{ author.position }}</p>
+                    <p>{{ author.department }}</p>
+                    <p>{{ author.affiliation  }}</p>
+                </div>
+            </div>
+        </div>
+        <!-- Education Section -->
+        <div class="col-12 col-md-8">
+            <div class="education-timeline">
+                {% for education in education_records %}
+                <div class="timeline-item mb-4">
+                    <h3>{{ education.degree }}</h3>
+                    <p class="duration">Duration: {{ education.duration }}</p>
+                    <a href="#" class="institution">{{ education.university_or_school }}</a>
+                </div>
+                {% empty %}
+                <p>No education records found for this author.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+{% endblock content %}

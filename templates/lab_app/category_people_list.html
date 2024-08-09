@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4">{{ category.category }} Research</h1>
+    <h1 class="text-center mb-4">{{ category.category }}</h1>
     <div class="row">
         {% for profile in profiles %}
             <div class="col-md-4 mb-3">
@@ -13,11 +13,11 @@
                     {% else %}
                         <img src="{% static 'default-profile.png' %}" class="card-img-top" alt="Default profile picture">
                     {% endif %}
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <h5 class="card-title">{{ profile.name }}</h5>
-                        <p class="card-text"><strong>Position:</strong> {{ profile.position }}</p>
-                        <p class="card-text"><strong>Affiliation:</strong> {{ profile.affiliation }}</p>
-                        <p class="card-text"><strong>Category:</strong> {{ profile.category.category }}</p>
+                        <p class="card-text"><strong></strong> {{ profile.position }}</p>
+                        <p class="card-text"><strong></strong> {{ profile.affiliation }}</p>
+                        <a href="{% url 'lab_app:people_profile_detail' profile.id %}" class="btn btn-primary mt-auto">View Profile</a>
                     </div>
                 </div>
             </div>

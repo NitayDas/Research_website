@@ -5,27 +5,27 @@
 <div class="text-center bg-warning m-5 p-4">         
     <div class="d-flex justify-content-center mt-2 text-decoration-none">
         <div class="m-3">
-            <a class="fw-bold" href="#">Education</a>
+            <a class="fw-bold" href="{% url 'lab_app:author_education' profile.id %}">Education</a>
         </div>
         <div class="nav-item dropdown m-3">
             <a class="nav-link dropdown-toggle fw-bold" href="#!" id="navbarDropdown" role="button" aria-expanded="false">
                 Research
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Researches</a></li>
-                <li><a class="dropdown-item" href="{% url 'lab_app:author_projects' profile.id %}">Publications</a></li>
+                <li><a class="dropdown-item" href="{% url 'lab_app:research_detail' profile.id %}">Researches</a></li>
+                <li><a class="dropdown-item" href="{% url 'lab_app:author_publications' profile.id %}">Publications</a></li>
                 <li><a class="dropdown-item" href="{% url 'lab_app:author_projects' profile.id %}">Projects</a></li>
             </ul>
         </div>
         <div class="m-3">
-            <a class="fw-bold" href="#">Contact</a>
+            <a class="fw-bold" href="{% url 'lab_app:contact_info' profile.id %}">Contact</a>
         </div>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-3">
-        <div class="bio-card">
+        <div class="bio-card text-center">
             <img src="{{ profile.profile_photo.url }}" alt="{{ profile.name }}" class="profile-image mb-3">
             <h5>{{ profile.name }}</h5>
             <p>{{ profile.position }}</p>
@@ -48,13 +48,17 @@
     </div>
 
     <div class="col-md-3">
-        <h2>Research Interest</h2>
-        <ul class="research-interest">
-            <li>Artificial Intelligence</li>
-            <li>Image Processing</li>
-            <li>Smart Farming</li>
+        <h2 class="text-primary">Research Interests</h2>
+        <ul class="list-group list-group-flush shadow-sm">
+            {% for interest in research_interests %}
+                <li class="list-group-item d-flex align-items-center">
+                    <i class="bi bi-lightbulb-fill text-warning me-2"></i>
+                    <span>{{ interest.interest_name }}</span>
+                </li>
+            {% endfor %}
         </ul>
     </div>
+    
 </div>
-
+<br>
 {% endblock content %}
