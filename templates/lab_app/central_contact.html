@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5 pt-3">
+    <div class="row">
+        {% for contact in contacts %}
+        <div class="col-md-4">
+            <div class="card text-center shadow-sm" style="border-radius: 15px;">
+                {% if contact.address_image %}
+                <img src="{{ contact.address_image.url }}" alt="Image not found" class="card-img-top img-fluid" style="border-radius: 15px 15px 0 0; max-height: 400px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body">
+                    <h2>{{ contact.department }}</h2>
+                    <h2>{{ contact.faculty }}</h2>
+                    <p><strong>University:</strong> {{ contact.university }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="p-4 mb-3" style="background-color: #fff3cd; border-radius: 15px;">
+                <h2 class="text-dark fw-bold">Contact Information</h2>
+                <hr class="my-4">
+                {% if contact.office_address %}<p><strong>Office:</strong> {{ contact.office_address }}</p>{% endif %}
+                {% if contact.department %}<p><strong>Department:</strong> {{ contact.department }}</p>{% endif %}
+                {% if contact.faculty %}<p><strong>Faculty:</strong> {{ contact.faculty }}</p>{% endif %}
+                {% if contact.university %}<p><strong>University:</strong> {{ contact.university }}</p>{% endif %}
+                {% if contact.post %}<p><strong>Post:</strong> {{ contact.post }}</p>{% endif %}
+                {% if contact.phone %}<p><strong>Phone:</strong> {{ contact.phone }}</p>{% endif %}
+                {% if contact.email %}<p><strong>Email:</strong> <a href="mailto:{{ contact.email }}" class="text-decoration-none">{{ contact.email }}</a></p>{% endif %}
+                {% if contact.skype %}<p><strong>Skype:</strong> {{ contact.skype }}</p>{% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div><br>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} <h1>Central Contacts</h1>
+    {% for contact in contacts %}
+    <div class="contact-card">
+        <h2>{{ contact.department }} - {{ contact.faculty }}</h2>
+        <p><strong>University:</strong> {{ contact.university }}</p>
+        <p><strong>Post:</strong> {{ contact.post }}</p>
+        <p><strong>Office Address:</strong> {{ contact.office_address }}</p>
+        <p><strong>Phone:</strong> {{ contact.phone }}</p>
+        <p><strong>Email:</strong> <a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
+        <p><strong>Skype:</strong> {{ contact.skype }}</p>
+    </div>
+    {% endfor %} {% endcomment %}
+

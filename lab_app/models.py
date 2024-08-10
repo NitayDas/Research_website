@@ -91,6 +91,23 @@ class Research(models.Model):
 
     def __str__(self):
         return f"{self.author}"
+    
+
+
+
+class CentralContact(models.Model):
+    office_address = models.TextField(blank=True,null=True)
+    department = models.CharField(max_length=200,blank=True,null=True)
+    faculty = models.CharField(max_length=200,blank=True,null=True)
+    university = models.CharField(max_length=200,blank=True,null=True)
+    post = models.CharField(max_length=200,blank=True,null=True)
+    phone = models.CharField(max_length=14,blank=True,null=True)
+    email = models.CharField(max_length=200,blank=True,null=True)
+    skype = models.CharField(max_length=200,blank=True,null=True)
+    address_image = models.ImageField('address/image/')
+
+    def __str__(self):
+        return f"{self.department}"
 
 
 

@@ -10,9 +10,9 @@
         {% for research in research %}
         <div class="col-md-4 d-flex align-items-stretch">
             <div class="card mb-4 shadow-sm project-card">
-                <img src="{{ research.project_image.url }}" class="card-img-top" alt="{{ research.project_title }}">
+                <img src="{{ research.project_image.url }}" class="card-img-top" alt="{{ "image not found" }}">
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title text-primary">{{ research.project_title }}</h5>
+                    <h5 class="card-title text-primary">{{ research.title }}</h5>
                     <p class="card-text text-secondary">{{ research.project_description|truncatewords:20 }}</p>
                     <p class="card-text"><small class="text-muted">{{ research.stat_date }} - {{ research.end_date }}</small></p>
 

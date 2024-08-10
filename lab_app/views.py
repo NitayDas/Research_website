@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.views.generic import DetailView
 from django.http import Http404
 from lab_app.forms import BannerImageForm,LoginForm, PeopleCategoryForm
-from lab_app.models import BannerImage, Contact, Education, PeopleCategory, PeopleProfile, Project, Publication, Research, ResearchInterest
+from lab_app.models import BannerImage, CentralContact, Contact, Education, PeopleCategory, PeopleProfile, Project, Publication, Research, ResearchInterest
 
 # Create your views here.
 def home_page_view(request):
@@ -138,10 +138,12 @@ def author_publications(request, author_id):
 
 def contact_info(request, author_id):
     author = get_object_or_404(PeopleProfile, id=author_id)
-    contact = get_object_or_404(Contact, author=author)
+    try:
+        contact = Contact.objects.get(author=author)
+    except Contact.DoesNotExist:
+        contact = None  # Set contact to None if it doesn't exist
 
     return render(request, 'lab_app/contact_info.html', {'author': author, 'contact': contact})
-
 
 
 def research_interest_view(request, author_id):
@@ -183,4 +185,10 @@ def research_detail(request, research_id):
     research = get_object_or_404(Research, id=research_id)
     related_research = Research.objects.filter(author=research.author).exclude(id=research.id)
     return render(request, 'lab_app/research_detail.html', {'research': research, 'related_research': related_research})
+
+
+
+def central_contact_view(request):
+    contacts = CentralContact.objects.all()
+    return render(request, 'lab_app/central_contact.html', {'contacts': contacts})
 
