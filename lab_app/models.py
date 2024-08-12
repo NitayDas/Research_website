@@ -111,4 +111,16 @@ class CentralContact(models.Model):
 
 
 
+class About(models.Model):
+    about_image = models.ImageField('about/image/',blank=True,null=True)
+    about1 = models.TextField(blank=True,null=True)
+    about2 = models.TextField(blank=True,null=True)
+    about3 = models.TextField(blank=True,null=True)
+    about4 = models.TextField(blank=True,null=True)
+    about5 = models.TextField(blank=True,null=True)
+    about6 = models.TextField(blank=True,null=True)
+    about7 = models.TextField(blank=True,null=True)
+
+    def __str__(self):
+        return f"{self.about1}"
 

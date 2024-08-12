@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.views.generic import DetailView
 from django.http import Http404
 from lab_app.forms import BannerImageForm,LoginForm, PeopleCategoryForm
-from lab_app.models import BannerImage, CentralContact, Contact, Education, PeopleCategory, PeopleProfile, Project, Publication, Research, ResearchInterest
+from lab_app.models import About, BannerImage, CentralContact, Contact, Education, PeopleCategory, PeopleProfile, Project, Publication, Research, ResearchInterest
 
 # Create your views here.
 def home_page_view(request):
@@ -191,4 +191,13 @@ def research_detail(request, research_id):
 def central_contact_view(request):
     contacts = CentralContact.objects.all()
     return render(request, 'lab_app/central_contact.html', {'contacts': contacts})
+
+
+
+def about_view(request):
+    about = About.objects.first()
+    context = {
+        'about': about,
+    }
+    return render(request, 'lab_app/about.html', context)
 

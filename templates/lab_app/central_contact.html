@@ -5,19 +5,19 @@
 <div class="container mt-5 pt-3">
     <div class="row">
         {% for contact in contacts %}
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="card text-center shadow-sm" style="border-radius: 15px;">
                 {% if contact.address_image %}
                 <img src="{{ contact.address_image.url }}" alt="Image not found" class="card-img-top img-fluid" style="border-radius: 15px 15px 0 0; max-height: 400px; object-fit: cover;">
                 {% endif %}
                 <div class="card-body">
-                    <h2>{{ contact.department }}</h2>
-                    <h2>{{ contact.faculty }}</h2>
-                    <p><strong>University:</strong> {{ contact.university }}</p>
+                    <h4>{{ contact.department }}</h4>
+                    <h5>{{ contact.faculty }}</h5>
+                    <p><strong>{{ contact.university }}</strong></p>
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="p-4 mb-3" style="background-color: #fff3cd; border-radius: 15px;">
                 <h2 class="text-dark fw-bold">Contact Information</h2>
                 <hr class="my-4">
