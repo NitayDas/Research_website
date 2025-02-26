@@ -28,13 +28,14 @@ class PeopleProfile(models.Model):
         return self.name
 
 class Publication(models.Model):
-    author = models.ForeignKey(PeopleProfile,on_delete=models.CASCADE)
-    title = models.CharField(max_length=255,null=True,blank=True)
-    doi_link = models.CharField(max_length=300,null=True,blank=True)
+    title = models.CharField(max_length=500, blank= True, null = True)  # Publication title
+    doi_link = models.URLField(unique=True, blank= True, null = True)  # DOI link
+    image = models.ImageField(upload_to='publications/', blank=True, null=True)  # Optional image
+    authors = models.ManyToManyField(PeopleProfile, related_name="publications")  # Many-to-Many relationship
     publish_year = models.CharField(max_length=200,null=True,blank=True)
 
     def __str__(self):
-        return f"{self.title} by {self.author}"
+        return self.title
 
 
 class Education(models.Model):

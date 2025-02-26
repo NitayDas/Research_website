@@ -1,10 +1,11 @@
 <header>
+    {% load static %}
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top mask-custom shadow-0">
         <div class="container">
             <a class="navbar-brand" href="{% url 'lab_app:home_page_view' %}">
-                <span style="color: #5e9693;">Research</span><span style="color: #18EF74;">Lab</span>
-            </a>
+                <img src="{% static 'images/logo.png' %}" alt="Logo" style="width:100px; height:100px; object-fit:contain; background-color:#fff; border-radius:5px;">
+            </a>                       
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -16,16 +17,17 @@
                         <a class="nav-link fw-bold" href="{% url 'lab_app:home_page_view' %}">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <li><a class="dropdown-item fw-bold" href="{% url 'lab_app:all_people_list' %}">People</a></li>
+                        {% comment %} <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             People
-                        </a>
+                        </a> {% endcomment %}
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'lab_app:all_people_list' %}">All</a></li>
-                            <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='Teachers' %}">Teachers</a></li>
+                            {% comment %} <li><a class="dropdown-item" href="{% url 'lab_app:all_people_list' %}">All</a></li> {% endcomment %}
+                            {% comment %} <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='Teachers' %}">Teachers</a></li>
                             <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='Honors Students' %}">Honors</a></li>
                             <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name="Master's Students" %}">Master's</a></li>
                             <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='PhD Students' %}">PhD</a></li>
-                            <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='M Fill Students' %}">M Fill</a></li>
+                            <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='M Fill Students' %}">M Fill</a></li> {% endcomment %}
                         </ul>
                     </li>
                     <li class="nav-item">

@@ -1,0 +1,49 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+*.egg-info/
+*.egg
+
+# Django stuff
+db.sqlite3
+media/
+staticfiles/
+
+# Logs and debug files
+*.log
+local_settings.py
+.env
+
+# PyCharm and VSCode
+.idea/
+.vscode/
+
+# Migrations (optional)
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Compiled files
+*.so
+
+# Celery
+celerybeat-schedule
+
+# Node modules (if using frontend tools)
+node_modules/
+
+# Docker
+*.pid
+
+# MacOS and Linux
+.DS_Store
+*.swp
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
