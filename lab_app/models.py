@@ -31,7 +31,8 @@ class Publication(models.Model):
     title = models.CharField(max_length=500, blank= True, null = True)  # Publication title
     doi_link = models.URLField(unique=True, blank= True, null = True)  # DOI link
     image = models.ImageField(upload_to='publications/', blank=True, null=True)  # Optional image
-    authors = models.ManyToManyField(PeopleProfile, related_name="publications")  # Many-to-Many relationship
+    authors = models.TextField(blank=True, null=True)  # Authors
+    journal_name = models.CharField(max_length=200, blank=True, null=True)  # Journal name
     publish_year = models.CharField(max_length=200,null=True,blank=True)
 
     def __str__(self):
