@@ -5,7 +5,10 @@ from django.contrib import messages
 from django.views.generic import DetailView
 from django.http import Http404
 from lab_app.forms import BannerImageForm,LoginForm, PeopleCategoryForm
-from lab_app.models import About, BannerImage, CentralContact, Contact, Education, PeopleCategory, PeopleProfile, Project, Publication, Research, ResearchInterest
+from lab_app.models import *
+
+
+
 
 # Create your views here.
 def home_page_view(request):
@@ -14,6 +17,8 @@ def home_page_view(request):
         'banner_images': banner_images
     }
     return render(request, 'lab_app/home.html', context)
+
+
 
 
 
@@ -29,6 +34,9 @@ def upload_banner_image(request):
     else:
         form = BannerImageForm()
     return render(request, 'lab_app/banner_image_upload_form.html', {'form': form})
+
+
+
 
 
 def user_login(request):
@@ -50,11 +58,14 @@ def user_login(request):
 
 
 
+
+
 @login_required
 def user_logout(request):
     logout(request)
     messages.success(request, 'You have been logged out successfully!')
     return redirect('lab_app:login')
+
 
 
 
@@ -75,16 +86,22 @@ def add_category(request):
 
 
 
+
 def people_list(request):
     categories = PeopleCategory.objects.all()
     profiles = PeopleProfile.objects.all()
     return render(request, 'lab_app/people_list.html', {'categories': categories, 'profiles': profiles})
 
 
+
+
+
 def category_people_list(request, category_name):
     category = get_object_or_404(PeopleCategory, category=category_name)
     profiles = PeopleProfile.objects.filter(category=category)
     return render(request, 'lab_app/category_people_list.html', {'category': category, 'profiles': profiles})
+
+
 
 
 
@@ -97,6 +114,8 @@ class PeopleProfileDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['research_interests'] = ResearchInterest.objects.filter(author=self.object)
         return context
+
+
 
 
 
@@ -115,6 +134,7 @@ def author_projects(request, author_id):
 
 
 
+
 def project_detail(request, project_id):
     project = get_object_or_404(Project, id=project_id)
     related_projects = Project.objects.filter(author=project.author).exclude(id=project.id)
@@ -122,10 +142,31 @@ def project_detail(request, project_id):
 
 
 
+
 def publication_list(request):
     publications = Publication.objects.all()
     return render(request, 'lab_app/publication_list.html', {'publications': publications})
 
+
+
+
+def news_list(request):
+    news_items = News.objects.filter(is_published=True).order_by('-published_date')
+    context = {
+        'news_items': news_items,
+        'page_title': 'Latest News'
+    }
+    return render(request, 'lab_app/news_list.html', context)
+
+
+
+def news_detail(request, pk):
+    news_item = get_object_or_404(News, pk=pk, is_published=True)
+    context = {
+        'news_item': news_item,
+        'page_title': news_item.title
+    }
+    return render(request, 'lab_app/news_details.html', context)
 
 
 

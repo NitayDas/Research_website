@@ -1,9 +1,19 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+from django.urls import reverse
+from django.utils import timezone
 
-# Create your models here.
+
+
+
+
+
+
 class BannerImage(models.Model):
     image = models.ImageField(upload_to='banner/images/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
+
+
 
 
 class PeopleCategory(models.Model):
@@ -12,6 +22,8 @@ class PeopleCategory(models.Model):
     def __str__(self):
         return self.category
     
+
+
 
 class PeopleProfile(models.Model):
     category = models.ForeignKey(PeopleCategory,on_delete=models.CASCADE)
@@ -27,6 +39,8 @@ class PeopleProfile(models.Model):
     def __str__(self):
         return self.name
 
+
+
 class Publication(models.Model):
     title = models.CharField(max_length=500, blank= True, null = True)  # Publication title
     doi_link = models.URLField(unique=True, blank= True, null = True)  # DOI link
@@ -39,6 +53,9 @@ class Publication(models.Model):
         return self.title
 
 
+
+
+
 class Education(models.Model):
     author = models.ForeignKey(PeopleProfile,on_delete=models.CASCADE)
     degree = models.CharField(max_length=200,null=True)
@@ -48,6 +65,9 @@ class Education(models.Model):
     def __str__(self):
         return self.degree
     
+
+
+
 
 class Project(models.Model):
     author = models.ForeignKey(PeopleProfile,on_delete=models.CASCADE)
@@ -62,6 +82,7 @@ class Project(models.Model):
     def __str__(self):
         return f"{self.author}"
     
+
 
 
 class Contact(models.Model):
@@ -80,9 +101,34 @@ class Contact(models.Model):
     
 
 
+
+
 class ResearchInterest(models.Model):
     author = models.ForeignKey(PeopleProfile,on_delete=models.CASCADE)
     interest_name = models.CharField(max_length=300,null=True,blank=True)
+
+
+
+
+class News(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    author = models.TextField(blank= True, null = True)
+    published_date = models.DateTimeField(default=timezone.now)
+    updated_date = models.DateTimeField(auto_now=True)
+    is_published = models.BooleanField(default=True,blank= True, null = True)
+    image = models.ImageField(upload_to='news_images/', blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('news_detail', kwargs={'pk': self.pk})
+
+    class Meta:
+        verbose_name_plural = "News"
+        ordering = ['-published_date']
+
 
 
 

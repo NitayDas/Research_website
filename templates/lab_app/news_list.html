@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}{{ news_item.title }}{% endblock %}
+
+{% block content %}
+  <div class="container-fluid px-4 py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <h1 class="display-10 h2 fw-semibold text-primary mb-2 border-bottom pb-2 px-4">
+          {{ page_title }}
+        </h1>
+     
+
+    {% if news_items %}
+      {% for item in news_items %}
+        <div class="row gx-0 mb-4">
+          <div class="col-12">
+            <div class="card border-0 shadow-sm transition-all w-100 px-2">
+
+              {% if item.image %}
+              <div class="w-50">
+                <img
+                  src="{{ item.image.url }}"
+                  class="img-fluid w-50"
+                  alt="{{ item.title }}"
+                  style="height: auto; max-width: 100%;"
+                >
+                </div>
+              {% endif %}
+
+              <div class="card-body flex-column w-100">
+                <div class="d-flex align-items-center justify-space-between mb-2 w-100">
+                  <span class="badge bg-secondary text-white">
+                    <i class="bi bi-calendar3 me-1"></i> {{ item.published_date|date:"M d, Y" }}
+                  </span>
+                  <span class="text-muted small">
+                    <i class="bi bi-person-fill me-1"></i>{{ item.author }}
+                  </span>
+                </div>
+
+                <h5 class="text-dark fw-semibold mb-3 w-100">
+                  <a href="{% url 'lab_app:news_details' item.id %}" class="text-decoration-none text-dark stretched-link d-block">
+                    {{ item.title }}
+                  </a>
+                </h5>
+
+                <p class="text-gray text-muted mb-2 w-100">
+                  {{ item.content|truncatewords:40 }}
+                </p>
+
+                <div class="mt-auto">
+                    <a href="{% url 'lab_app:news_details' item.id %}" class="btn btn-outline-primary btn-sm px-2 py-1">
+                     <i class="bi bi-arrow-right ms-1" ></i> Read More
+                    </a>
+                </div>
+
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+        {% else %}
+        <div class="row gx-0">
+            <div class="col-12 text-center">
+            <p class="text-muted">No news articles available at the moment. Please check back later.</p>
+            </div>
+        </div>
+        {% endif %}
+     </div>
+    </div>
+  </div>
+{% endblock %}
