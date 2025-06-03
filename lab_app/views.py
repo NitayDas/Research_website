@@ -97,9 +97,18 @@ def people_list(request):
 
 
 def category_people_list(request, category_name):
-    category = get_object_or_404(PeopleCategory, category=category_name)
-    profiles = PeopleProfile.objects.filter(category=category)
-    return render(request, 'lab_app/category_people_list.html', {'category': category, 'profiles': profiles})
+    try:
+        category = PeopleCategory.objects.get(category=category_name)
+        profiles = PeopleProfile.objects.filter(category=category)
+    except PeopleCategory.DoesNotExist:
+        category = None
+        profiles = []
+
+    return render(request, 'lab_app/category_people_list.html', {
+        'category': category,
+        'profiles': profiles,
+        'not_found': True if category is None else False,
+    })
 
 
 

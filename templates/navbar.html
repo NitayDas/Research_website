@@ -16,20 +16,28 @@
                     <li class="nav-item">
                         <a class="nav-link fw-bold" href="{% url 'lab_app:home_page_view' %}">Home</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <li><a class="dropdown-item fw-bold" href="{% url 'lab_app:all_people_list' %}">People</a></li>
-                        {% comment %} <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            People
-                        </a> {% endcomment %}
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            {% comment %} <li><a class="dropdown-item" href="{% url 'lab_app:all_people_list' %}">All</a></li> {% endcomment %}
-                            {% comment %} <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='Teachers' %}">Teachers</a></li>
-                            <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='Honors Students' %}">Honors</a></li>
-                            <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name="Master's Students" %}">Master's</a></li>
-                            <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='PhD Students' %}">PhD</a></li>
-                            <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='M Fill Students' %}">M Fill</a></li> {% endcomment %}
-                        </ul>
+                    <li class="nav-item dropdown dropdown-hover">
+                    <a
+                        class="nav-link dropdown-toggle fw-bold"
+                        href="#"
+                        id="peopleDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        People
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="peopleDropdown">
+                        <li><a class="dropdown-item" href="{% url 'lab_app:all_people_list' %}">All</a></li>
+                        <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='Teachers' %}">Teachers</a></li>
+                        <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='Honors Students' %}">Honors</a></li>
+                        <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name="Master\'s Students" %}">Master's</a></li>
+                        <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='PhD Students' %}">PhD</a></li>
+                        <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='M Fill Students' %}">M Fill</a></li>
+                        <li><a class="dropdown-item" href="{% url 'lab_app:category_people_list' category_name='Alumni' %}">Alumni</a></li>
+                    </ul>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link fw-bold" href="{% url 'lab_app:publication_list' %}">Publications</a>
                     </li>

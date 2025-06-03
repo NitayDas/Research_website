@@ -7,8 +7,6 @@ from django.utils import timezone
 
 
 
-
-
 class BannerImage(models.Model):
     image = models.ImageField(upload_to='banner/images/')
     uploaded_at = models.DateTimeField(auto_now_add=True)

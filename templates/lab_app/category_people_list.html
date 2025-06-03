@@ -1,28 +1,40 @@
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4">{{ category.category }}</h1>
-    <div class="row">
-        {% for profile in profiles %}
-            <div class="col-md-4 mb-3">
-                <div class="card">
+  {% if not_found %}
+  <p class="text-danger text-center">
+    No members are available for this category !
+  </p>
+  {% else %}
+  <h1 class="text-center mb-4">{{ category.category }}</h1>
+ <div class="row">
+    {% for profile in profiles %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 text-center border-0 shadow-lg">
+                <div class="card-body pt-4">
                     {% if profile.profile_photo %}
-                        <img src="{{ profile.profile_photo.url }}" class="card-img-top" alt="{{ profile.name }}">
+                        <img src="{{ profile.profile_photo.url }}" class="rounded-circle mb-3" alt="{{ profile.name }}" style="width: 100px; height: 100px; object-fit: cover;">
                     {% else %}
-                        <img src="{% static 'default-profile.png' %}" class="card-img-top" alt="Default profile picture">
+                        <img src="{% static 'default-profile.png' %}" class="rounded-circle mb-3" alt="Default profile" style="width: 100px; height: 100px; object-fit: cover;">
                     {% endif %}
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ profile.name }}</h5>
-                        <p class="card-text"><strong></strong> {{ profile.position }}</p>
-                        <p class="card-text"><strong></strong> {{ profile.affiliation }}</p>
-                        <a href="{% url 'lab_app:people_profile_detail' profile.id %}" class="btn btn-primary mt-auto">View Profile</a>
-                    </div>
+                    <h6 class="fw-semibold mb-1">{{ profile.name }}</h6>
+                    <p class="text-muted small mb-1">{{ profile.position }}</p>
+                    <p class="text-muted small mb-2">{{ profile.affiliation }}</p>
+                    <a href="{% url 'lab_app:people_profile_detail' profile.id %}" class="btn btn-sm btn-outline-primary">View Profile</a>
                 </div>
+                {% if profile.linkedin or profile.twitter or profile.github %}
+                <div class="card-footer bg-transparent border-0">
+                    {% if profile.linkedin %}<a href="{{ profile.linkedin }}" class="text-muted mx-1"><i class="fab fa-linkedin-in"></i></a>{% endif %}
+                    {% if profile.twitter %}<a href="{{ profile.twitter }}" class="text-muted mx-1"><i class="fab fa-twitter"></i></a>{% endif %}
+                    {% if profile.github %}<a href="{{ profile.github }}" class="text-muted mx-1"><i class="fab fa-github"></i></a>{% endif %}
+                </div>
+                {% endif %}
             </div>
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endif %}
 </div>
 
 {% endblock content %}
