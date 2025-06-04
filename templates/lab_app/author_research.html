@@ -2,12 +2,17 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="header-section p-5 mb-4 text-center text-white">
+<div class="container mt-5 pt-3">
+    {% if researches %}
+
+    <div
+        class="p-3 mb-4 text-center text-white"
+        style="background: linear-gradient(135deg,rgb(60, 85, 126) 20%, rgb(78, 111, 164) 40%, #60efff 100%);">
         <h2>Projects by {{ author.name }}</h2>
     </div>
+   
     <div class="row">
-        {% for research in research %}
+        {% for research in researches %}
         <div class="col-md-4 d-flex align-items-stretch">
             <div class="card mb-4 shadow-sm project-card">
                 <img src="{{ research.project_image.url }}" class="card-img-top" alt="{{ "image not found" }}">
@@ -30,5 +35,6 @@
         </div>
         {% endfor %}
     </div>
+    {% endif %}
 </div>
 {% endblock %}

@@ -127,14 +127,24 @@ class PeopleProfileDetailView(DetailView):
 
 
 
+def author_publications(request, author_id):
+    try:
+        author = get_object_or_404(PeopleProfile, id=author_id)
+        publications = Publication.objects.filter(author=author)
+    except PeopleProfile.DoesNotExist:
+        raise Http404("Author does not exist")
+    
+    return render(request, 'lab_app/author_publications.html', {'author': author, 'publications': publications})
+
+
+
 
 def author_projects(request, author_id):
     try:
         author = PeopleProfile.objects.get(id=author_id)
+        projects = Project.objects.filter(author=author)
     except PeopleProfile.DoesNotExist:
         raise Http404("Author does not exist")
-    
-    projects = Project.objects.filter(author=author)
     
     if not projects.exists():
         messages.warning(request, "This author has no associated projects.")
@@ -179,12 +189,6 @@ def news_detail(request, pk):
 
 
 
-def author_publications(request, author_id):
-    author = get_object_or_404(PeopleProfile, id=author_id)
-    publications = Publication.objects.filter(author=author)
-    return render(request, 'lab_app/author_publications.html', {'author': author, 'publications': publications})
-
-
 
 def contact_info(request, author_id):
     author = get_object_or_404(PeopleProfile, id=author_id)
@@ -219,15 +223,14 @@ def author_education(request, author_id):
 def author_research(request, author_id):
     try:
         author = PeopleProfile.objects.get(id=author_id)
+        researches = Research.objects.filter(author=author)
     except PeopleProfile.DoesNotExist:
         raise Http404("Author does not exist")
     
-    research = Research.objects.filter(author=author)
-    
-    if not research.exists():
+    if not researches.exists():
         messages.warning(request, "This author has no associated projects.")
 
-    return render(request, 'lab_app/author_research.html', {'author': author, 'research': research})
+    return render(request, 'lab_app/author_research.html', {'author': author, 'researches': researches})
 
 
 

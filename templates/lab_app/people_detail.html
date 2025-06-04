@@ -2,63 +2,102 @@
 {% load static %}
 {% block content %}
 
-<div class="text-center bg-warning m-5 p-4">         
-    <div class="d-flex justify-content-center mt-2 text-decoration-none">
-        <div class="m-3">
-            <a class="fw-bold" href="{% url 'lab_app:author_education' profile.id %}">Education</a>
-        </div>
-        <div class="nav-item dropdown m-3">
-            <a class="nav-link dropdown-toggle fw-bold" href="#!" id="navbarDropdown" role="button" aria-expanded="false">
-                Research
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{% url 'lab_app:research_detail' profile.id %}">Researches</a></li>
-                <li><a class="dropdown-item" href="{% url 'lab_app:author_publications' profile.id %}">Publications</a></li>
-                <li><a class="dropdown-item" href="{% url 'lab_app:author_projects' profile.id %}">Projects</a></li>
-            </ul>
-        </div>
-        <div class="m-3">
-            <a class="fw-bold" href="{% url 'lab_app:contact_info' profile.id %}">Contact</a>
-        </div>
-    </div>
-</div>
+<div class="container px-4 mb-4">  
 
-<div class="row">
-    <div class="col-md-3">
-        <div class="bio-card text-center">
-            <img src="{{ profile.profile_photo.url }}" alt="{{ profile.name }}" class="profile-image mb-3">
-            <h5>{{ profile.name }}</h5>
-            <p>{{ profile.position }}</p>
-            <p>{{ profile.affiliation }}</p>
+    <!-- Top Navigation Section -->
+    <div class="text-center bg-gradient rounded shadow p-4 my-5" style="background-color: #8bc8d3; color:white;">
+        <div class="d-flex justify-content-center flex-wrap gap-4">
+            <a class="fw-bold text-dark text-decoration-none hover-link" href="{% url 'lab_app:author_education' profile.id %}">
+                🎓 Education
+            </a>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle fw-bold text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    🔬 Research
+                </a>
+                <ul class="dropdown-menu shadow" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="{% url 'lab_app:author_researches' profile.id %}">Researches</a></li>
+                    <li><a class="dropdown-item" href="{% url 'lab_app:author_publications' profile.id %}">Publications</a></li>
+                    <li><a class="dropdown-item" href="{% url 'lab_app:author_projects' profile.id %}">Projects</a></li>
+                </ul>
+            </div>
+            <a class="fw-bold text-dark text-decoration-none hover-link" href="{% url 'lab_app:contact_info' profile.id %}">
+                📬 Contact
+            </a>
         </div>
     </div>
 
-    <div class="col-md-6">
-        <h2>Biography</h2>
-        <p class="text-justify-custom">{{ profile.biography }}</p>
-        <div>
-            <a target="_blank" href="{{ profile.google_scholar }}">
-                <p class="text-justify-custom">Google Scholar: {{ profile.google_scholar }}</p>
-            </a>
-            <a target="_blank" href="{{ profile.research_gate }}">
-                <p class="text-justify-custom">Research Gate: {{ profile.research_gate }}</p>
-            </a>
+    <!-- Profile Details Section -->
+    <div class="row gy-4">
+        <!-- Profile Card -->
+        <div class="col-md-3">
+            <div class="card text-center shadow border-0">
+                {% if profile.profile_photo %}
+                   <img
+                        src="{{ profile.profile_photo.url }}"
+                        class="card-img-top rounded-circle p-3 mx-auto d-block"
+                        alt="{{ profile.name }}"
+                        style="width: 180px; height: 180px; object-fit: cover;"
+                    />
+                    {% else %}
+                    <img
+                        src="{% static 'default_profile.png' %}"
+                        class="card-img-top rounded-circle p-3 mx-auto d-block"
+                        alt="Default Profile"
+                        style="width: 180px; height: 180px; object-fit: cover;"
+                    />
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ profile.name }}</h5>
+                    <p class="mb-1 text-muted">{{ profile.position }}</p>
+                    <p class="text-muted">{{ profile.affiliation }}</p>
+                </div>
+            </div>
         </div>
-        
+
+        <!-- Biography & Links -->
+        <div class="col-md-6">
+            <div class="card p-4 shadow border-0">
+                <h3 class="text-primary mb-3">🧬 Biography</h3>
+                <p class="text-justify-custom">{{ profile.biography }}</p>
+                <div class="mt-4">
+                    {% if profile.google_scholar %}
+                        <p>
+                            <a target="_blank" rel="noopener noreferrer" href="{{ profile.google_scholar }}" class="btn btn-outline-primary btn-sm me-2">
+                                📘 Google Scholar
+                            </a>
+                        </p>
+                    {% endif %}
+                    {% if profile.research_gate %}
+                        <p>
+                            <a target="_blank" rel="noopener noreferrer" href="{{ profile.research_gate }}" class="btn btn-outline-success btn-sm">
+                                📗 ResearchGate
+                            </a>
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Research Interests -->
+        <div class="col-md-3">
+            <div class="card shadow border-0 p-3 h-100">
+                <h4 class="text-primary mb-2">💡 Research Interests</h4>
+                {% if research_interests %}
+                    <ul class="list-group list-group-flush">
+                        {% for interest in research_interests %}
+                            <li class="list-group-item d-flex align-items-center">
+                                <i class="bi bi-lightbulb-fill text-warning me-2"></i>
+                                <span class="fw-semibold">{{ interest.interest_name }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-muted">No research interests listed.</p>
+                {% endif %}
+            </div>
+        </div>
     </div>
 
-    <div class="col-md-3">
-        <h2 class="text-primary">Research Interests</h2>
-        <ul class="list-group list-group-flush shadow-sm">
-            {% for interest in research_interests %}
-                <li class="list-group-item d-flex align-items-center">
-                    <i class="bi bi-lightbulb-fill text-warning me-2"></i>
-                    <span>{{ interest.interest_name }}</span>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-    
-</div>
-<br>
+</div> <!-- End container -->
+
 {% endblock content %}

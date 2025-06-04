@@ -6,8 +6,12 @@
     No members are available for this category !
   </p>
   {% else %}
-  <h1 class="text-center mb-4">{{ category.category }}</h1>
- <div class="row">
+    <h3 class="text-center mb-4 fw-bold display-6 text-primary">
+  {{ category.category }} List
+</h1>
+
+
+  <div class="row">
     {% for profile in profiles %}
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100 text-center border-0 shadow-lg">

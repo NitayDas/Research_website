@@ -1,76 +1,127 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} {% load static %} {% block content %}
 
-{% block content %}
-<div class="container mt-5 pt-3">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card text-center shadow-sm" style="border-radius: 15px;">
-                <img src="{{ author.profile_photo.url }}" alt="{{ author.name }}" class="card-img-top img-fluid" style="border-radius: 15px 15px 0 0; max-height: 400px; object-fit: cover;">
-                <div class="card-body">
-                    <h4 class="card-title fw-bold">{{ author.name }}</h4>
-                    <p class="card-text text-muted">{{ author.position }}</p>
-                    <p class="text-secondary"><strong>{{ author.department }}</strong></p>
-                    <p class="text-secondary"><strong>{{ author.affiliation }}</strong></p>                
-                    <p class="text-secondary"><strong>{{ author.university }}</strong></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="p-4 mb-3" style="background-color: #fff3cd; border-radius: 15px;">
-                <h2 class="text-dark fw-bold">General Information</h2>
-                <hr class="my-4">
-                {% if contact %}
-                    {% if contact.office_address %}<p><strong>Office:</strong> {{ contact.office_address }}</p>{% endif %}
-                    {% if contact.department %}<p><strong>Department:</strong> {{ contact.department }}</p>{% endif %}
-                    {% if contact.faculty %}<p><strong>Faculty:</strong> {{ contact.faculty }}</p>{% endif %}
-                    {% if contact.university %}<p><strong>University:</strong> {{ contact.university }}</p>{% endif %}
-                    {% if contact.post %}<p><strong>Post:</strong> {{ contact.post }}</p>{% endif %}
-                    {% if contact.phone %}<p><strong>Phone:</strong> {{ contact.phone }}</p>{% endif %}
-                    {% if contact.email %}<p><strong>Email:</strong> <a href="mailto:{{ contact.email }}" class="text-decoration-none">{{ contact.email }}</a></p>{% endif %}
-                    {% if contact.skype %}<p><strong>Skype:</strong> {{ contact.skype }}</p>{% endif %}
-                {% else %}
-                    <p>No contact information available for this profile.</p>
-                {% endif %}
-            </div>
-        </div>
+<div class="container px-4 mb-4">
+  <!-- Top Navigation Section -->
+  <div
+    class="text-center bg-gradient rounded shadow p-4 my-5"
+    style="background-color: #8bc8d3; color: white"
+  >
+    <div class="d-flex justify-content-center flex-wrap gap-4">
+      <a
+        class="fw-bold text-dark text-decoration-none hover-link"
+        href="{% url 'lab_app:author_education' author.id %}"
+      >
+        🎓 Education
+      </a>
+      <div class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle fw-bold text-dark"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          🔬 Research
+        </a>
+        <ul class="dropdown-menu shadow" aria-labelledby="navbarDropdown">
+          <li>
+            <a
+              class="dropdown-item"
+              href="{% url 'lab_app:author_researches' author.id %}"
+              >Researches</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              href="{% url 'lab_app:author_publications' author.id %}"
+              >Publications</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              href="{% url 'lab_app:author_projects' author.id %}"
+              >Projects</a
+            >
+          </li>
+        </ul>
+      </div>
+      <a
+        class="fw-bold text-blue text-decoration-none hover-link"
+        href="{% url 'lab_app:contact_info' author.id %}"
+      >
+        📬 Contact
+      </a>
     </div>
-</div><br>
+  </div>
+
+  <div class="container mt-5 pt-3">
+    <div class="row">
+
+      <!-- Profile Card -->
+      <div class="col-md-4">
+          <div class="card text-center shadow border-0">
+            {% if author.profile_photo %}
+            <img
+                src="{{ author.profile_photo.url }}"
+                class="card-img-top rounded-circle p-3 mx-auto d-block"
+                alt="{{ author.name }}"
+                style="width: 180px; height: 180px; object-fit: cover;"
+            />
+            {% else %}
+            <img
+                src="{% static 'default_profile.png' %}"
+                class="card-img-top rounded-circle p-3 mx-auto d-block"
+                alt="Default Profile"
+                style="width: 180px; height: 180px; object-fit: cover;"
+            />
+            {% endif %}
+
+            <div class="card-body">
+              <h5 class="card-title">{{ author.name }}</h5>
+              <p class="mb-1 text-muted">{{ author.position }}</p>
+              <p class="mb-1 text-muted">{{ author.department }}</p>
+              <p class="text-muted">{{ author.affiliation }}</p>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div
+          class="p-4 mb-3"
+          style="background-color: #b9d7dd; border-radius: 15px"
+        >
+          <h2 class="text-dark fw-bold">General Information</h2>
+          <hr class="my-4" />
+          {% if contact %} {% if contact.office_address %}
+          <p><strong>Office:</strong> {{ contact.office_address }}</p>
+          {% endif %} {% if contact.department %}
+          <p><strong>Department:</strong> {{ contact.department }}</p>
+          {% endif %} {% if contact.faculty %}
+          <p><strong>Faculty:</strong> {{ contact.faculty }}</p>
+          {% endif %} {% if contact.university %}
+          <p><strong>University:</strong> {{ contact.university }}</p>
+          {% endif %} {% if contact.post %}
+          <p><strong>Post:</strong> {{ contact.post }}</p>
+          {% endif %} {% if contact.phone %}
+          <p><strong>Phone:</strong> {{ contact.phone }}</p>
+          {% endif %} {% if contact.email %}
+          <p>
+            <strong>Email:</strong>
+            <a href="mailto:{{ contact.email }}" class="text-decoration-none"
+              >{{ contact.email }}</a
+            >
+          </p>
+          {% endif %} {% if contact.skype %}
+          <p><strong>Skype:</strong> {{ contact.skype }}</p>
+          {% endif %} {% else %}
+          <p>No contact information available for this profile.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
-
-
-
-
-
-<!-- <div class="container mt-5 pt-2">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card text-center shadow-sm border-0">
-                <img src="{{ author.profile_photo.url }}" alt="{{ author.name }}" class="card-img-top img-fluid rounded-circle mx-auto mt-3" style="width: 200px; height: 200px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title font-weight-bold">{{ author.name }}</h5>
-                    <p class="card-text text-muted">{{ author.position }}</p>
-                    <p class="text-muted">{{ author.department }}</p>
-                    <p class="text-muted">{{ author.affiliation }}</p>                
-                    <p class="text-muted">{{ author.university }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="bg-light p-4 border rounded shadow-sm">
-                <h2 class="text-warning">General Information</h2>
-                <hr class="border-warning">
-                <p><strong>Office:</strong> {{ contact.office_address }}</p>
-                <p><strong>Department:</strong> {{ contact.department }}</p>
-                <p><strong>Faculty:</strong> {{ contact.faculty }}</p>
-                <p><strong>University:</strong> {{ contact.university }}</p>
-                <p><strong>Post:</strong> {{ contact.post }}</p>
-                <p><strong>Phone:</strong> {{ contact.phone }}</p>
-                <p><strong>Email:</strong> <a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
-                <p><strong>Skype:</strong> {{ contact.skype }}</p>
-            </div>
-        </div>
-    </div>
-</div><br> -->
-
-

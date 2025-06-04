@@ -1,36 +1,121 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} 
+{% load static %} 
 {% block content %}
 
-<div class="container pt-3">
+<div class="container px-4 mb-4">
+  <!-- Top Navigation Section -->
+  <div
+    class="text-center bg-gradient rounded shadow p-4 my-5"
+    style="background-color: #8bc8d3; color: white"
+  >
+    <div class="d-flex justify-content-center flex-wrap gap-4">
+      <a
+        class="fw-bold text-blue text-decoration-none hover-link"
+        href="{% url 'lab_app:author_education' author.id %}"
+      >
+        🎓 Education
+      </a>
+      <div class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle fw-bold text-dark"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          🔬 Research
+        </a>
+        <ul class="dropdown-menu shadow" aria-labelledby="navbarDropdown">
+          <li>
+            <a
+              class="dropdown-item"
+              href="{% url 'lab_app:author_researches' author.id %}"
+              >Researches</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              href="{% url 'lab_app:author_publications' author.id %}"
+              >Publications</a
+            >
+          </li>
+          <li>
+            <a
+              class="dropdown-item"
+              href="{% url 'lab_app:author_projects' author.id %}"
+              >Projects</a
+            >
+          </li>
+        </ul>
+      </div>
+      <a
+        class="fw-bold text-dark text-decoration-none hover-link"
+        href="{% url 'lab_app:contact_info' author.id %}"
+      >
+        📬 Contact
+      </a>
+    </div>
+  </div>
+
+  <div class="container mt-5 pt-3">
     <div class="row">
-        <!-- Profile Section -->
-        <div class="col-12 col-md-4 mb-3 mb-md-0">
-            <div class="profile-container text-center">
-                <img src="{{ author.profile_photo.url }}" alt="{{ author.name }}" style="max-width: 100%;">
-                <div class="profile-info mt-3">
-                    <h2>{{ author.name }}</h2>
-                    <p>{{ author.position }}</p>
-                    <p>{{ author.department }}</p>
-                    <p>{{ author.affiliation  }}</p>
-                </div>
+
+      <!-- Profile Card -->
+      <div class="col-md-4">
+          <div class="card text-center shadow border-0">
+            {% if author.profile_photo %}
+            <img
+                src="{{ author.profile_photo.url }}"
+                class="card-img-top rounded-circle p-3 mx-auto d-block"
+                alt="{{ author.name }}"
+                style="width: 180px; height: 180px; object-fit: cover;"
+            />
+            {% else %}
+            <img
+                src="{% static 'default_profile.png' %}"
+                class="card-img-top rounded-circle p-3 mx-auto d-block"
+                alt="Default Profile"
+                style="width: 180px; height: 180px; object-fit: cover;"
+            />
+            {% endif %}
+
+            <div class="card-body">
+              <h5 class="card-title">{{ author.name }}</h5>
+              <p class="mb-1 text-muted">{{ author.position }}</p>
+              <p class="mb-1 text-muted">{{ author.department }}</p>
+              <p class="text-muted">{{ author.affiliation }}</p>
             </div>
         </div>
-        <!-- Education Section -->
-        <div class="col-12 col-md-8">
-            <div class="education-timeline">
+      </div>
+
+     <!-- Education Section -->
+        <div class="col-12 col-md-8 ">
+            <div class="education-timeline" style="background-color: #b9d7dd; border-radius: 15px">
                 {% for education in education_records %}
-                <div class="timeline-item mb-4">
-                    <h3>{{ education.degree }}</h3>
-                    <p class="duration">Duration: {{ education.duration }}</p>
-                    <a href="#" class="institution">{{ education.university_or_school }}</a>
+                <div class="timeline-item mb-3">
+                    <h4 class="mb-1  fw-semibold text-dark">{{ education.degree }}</h4>
+                    <p class="mb-1 text-muted fst-italic small">Duration: {{ education.duration }}</p>
+                    <a href="#" class="text-decoration-none fw-medium text-primary">
+                    {{ education.university_or_school }}
+                    </a>
                 </div>
                 {% empty %}
                 <p>No education records found for this author.</p>
                 {% endfor %}
             </div>
         </div>
+
     </div>
+  </div>
 </div>
-<br>
-{% endblock content %}
+{% endblock %}
+
+
+
+
+
+
+
+
