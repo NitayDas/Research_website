@@ -1,23 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
-<br>
-  <!-- Carousel -->
-  <div id="demo" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
-    <!-- Indicators/dots -->
-    <div class="carousel-indicators">
-        {% for image in banner_images %}
-            <button type="button" data-bs-target="#demo" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></button>
-        {% endfor %}
-    </div>
+    <br>
+    <!-- Carousel -->
+    <div id="demo" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
+        <!-- Indicators/dots -->
+        <div class="carousel-indicators">
+            {% for image in banner_images %}
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="{{ forloop.counter0 }}" 
+                        {% if forloop.first %}class="active"{% endif %} aria-label="Slide {{ forloop.counter }}">
+                </button>
+            {% endfor %}
+        </div>
 
-    <!-- The slideshow/carousel -->
-    <div class="carousel-inner">
-        {% for image in banner_images %}
-            <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="3000">
-                <img src="{{ image.image.url }}" alt="Banner Image" class="d-block w-100">
-            </div>
-        {% endfor %}
-    </div>
+        <!-- The slideshow/carousel -->
+        <div class="carousel-inner">
+            {% for image in banner_images %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="4000">
+                    <div class="text-center" style="background: #f8f9fa; padding: 20px 0;">
+                        <img src="{{ image.image.url }}" 
+                            alt="{% if image.caption %}{{ image.caption }}{% else %}Banner {{ forloop.counter }}{% endif %}" 
+                            class="img-fluid" 
+                            style="max-height: 700px; width:600px;">
+                    </div>
+                    
+                    {% if image.caption %}
+                    <div class="carousel-caption d-none d-md-block">
+                        <div class="bg-dark bg-opacity-50 p-3 rounded">
+                            <h5 class="mb-1">{{ image.caption }}</h5>
+                            <small class="text-white-50">Slide {{ forloop.counter }}</small>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
 
     <!-- Left and right controls/icons -->
     <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
@@ -39,4 +55,76 @@
         });
     });
   </script>
+
+
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center fw-bold text-primary mb-5">
+      শিক্ষার্থীদের <span class="text-warning">অনুভূতি</span>
+    </h2>
+
+    <div id="studentSpeechCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+        {% for speech in speeches %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <div class="card border-0 shadow-sm p-5 rounded-4 mx-auto" style="max-width: 900px; background: #fdfdfd;">
+            <div class="row align-items-center g-4">
+              
+              <!-- Image -->
+              <div class="col-md-4 text-center">
+                <img src="{{ speech.photo.url }}" alt="{{ speech.name }}" 
+                     class="rounded-circle shadow-sm" 
+                     style="width: 150px; height: 150px; object-fit: cover;">
+              </div>
+
+              <!-- Text -->
+              <div class="col-md-8">
+                <p class="fst-italic text-muted" style="line-height: 1.7;">
+                  “ {{ speech.speech|truncatewords:35 }} ”
+                </p>
+                <h5 class="fw-bold text-primary mb-1">{{ speech.name }}</h5>
+                <p class="text-secondary mb-0">
+                  {{ speech.subject }} 
+                  {% if speech.university %}
+                    — <span class="fw-semibold text-primary">{{ speech.university }}</span>
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Indicators -->
+      <div class="carousel-indicators mt-4">
+        {% for speech in speeches %}
+          <button type="button" data-bs-target="#studentSpeechCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
+                  class="{% if forloop.first %}active{% endif %}" aria-current="true" aria-label="Slide {{ forloop.counter }}"></button>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .carousel-indicators [data-bs-target] {
+    background-color: #007bff;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .carousel-indicators .active {
+    background-color: #ffb703;
+  }
+
+  .carousel-item {
+    transition: transform 1s ease-in-out;
+  }
+</style>
+
+
 {% endblock content %}

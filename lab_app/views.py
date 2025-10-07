@@ -6,6 +6,7 @@ from django.views.generic import DetailView
 from django.http import Http404
 from lab_app.forms import BannerImageForm,LoginForm, PeopleCategoryForm
 from lab_app.models import *
+from home.models import *
 
 
 
@@ -13,8 +14,10 @@ from lab_app.models import *
 # Create your views here.
 def home_page_view(request):
     banner_images = BannerImage.objects.order_by('-uploaded_at')[:3]
+    speeches = StudentSpeech.objects.order_by('-uploaded_at')[:15]
     context = {
-        'banner_images': banner_images
+        'banner_images': banner_images,
+        'speeches' : speeches
     }
     return render(request, 'lab_app/home.html', context)
 
