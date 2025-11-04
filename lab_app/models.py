@@ -9,7 +9,6 @@ from django.utils import timezone
 
 class BannerImage(models.Model):
     image = models.ImageField(upload_to='banner/images/')
-    caption = models.TextField(blank=True, null = True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
 
@@ -41,15 +40,17 @@ class PeopleProfile(models.Model):
 
 
 class Publication(models.Model):
-    author = models.ForeignKey(PeopleProfile,on_delete=models.CASCADE, blank= True, null=True)
     title = models.CharField(max_length=500, blank= True, null = True)  # Publication title
     doi_link = models.URLField(unique=True, blank= True, null = True)  # DOI link
     image = models.ImageField(upload_to='publications/', blank=True, null=True)  # Optional image
+    authors = models.TextField(blank=True, null=True)  # Authors
     journal_name = models.CharField(max_length=200, blank=True, null=True)  # Journal name
     publish_year = models.CharField(max_length=200,null=True,blank=True)
 
     def __str__(self):
         return self.title
+
+
 
 
 
@@ -139,7 +140,6 @@ class Research(models.Model):
     
 
 
-
 class CentralContact(models.Model):
     office_address = models.TextField(blank=True,null=True)
     department = models.CharField(max_length=200,blank=True,null=True)
@@ -153,6 +153,8 @@ class CentralContact(models.Model):
 
     def __str__(self):
         return f"{self.department}"
+
+
 
 
 
@@ -171,13 +173,5 @@ class About(models.Model):
 
 
 
-    
-
-
-
-
-
-
-    
 
 
