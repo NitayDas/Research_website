@@ -5,12 +5,9 @@ from django.utils import timezone
 
 
 
-
-
 class BannerImage(models.Model):
     image = models.ImageField(upload_to='banner/images/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
-
 
 
 
@@ -20,7 +17,6 @@ class PeopleCategory(models.Model):
     def __str__(self):
         return self.category
     
-
 
 
 class PeopleProfile(models.Model):
@@ -68,7 +64,7 @@ class Education(models.Model):
 
 
 class Project(models.Model):
-    author = models.ForeignKey(PeopleProfile,on_delete=models.CASCADE)
+    authors = models.TextField(blank=True, null=True)
     project_title = models.TextField(blank=True,null=True)
     project_description = models.TextField(blank=True,null=True)
     stat_date = models.CharField(max_length=200,null=True,blank=True)
