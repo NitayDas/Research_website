@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-10a&me5uq@n10r(y6_v56j5^sa9r^t*78=habuy9j!7hv9m(o*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -42,6 +42,18 @@ INSTALLED_APPS = [
     'lab_app',
     'home',
 ]
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://brb-bd.org',
+    'https://www.brb-bd.org',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+]
+
+# If you're using subdomains
+CSRF_COOKIE_DOMAIN = '.brb-bd.org'  # Note the dot at the beginning
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
